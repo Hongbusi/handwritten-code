@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>父组件：{{ obj.message }}<button @click="handleClickEdit">修改</button></p>
+    <test-child @test-event="handleTestEvent" />
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script>
+Vue.component('test-child', {
+  data() {
+    return {
+      childObj: {
+        message: '这是子组件的数据'
+      }
+    }
+  },
+
+  template: `<div>子组件：{{ childObj.message }}<button @click="handleClickEmit">传值</button><button @click="handleClickEdit">修改</button></div></div>`,
+
+  methods: {
+    handleClickEmit() {
+      this.$emit('test-event', this.childObj)
+    },
+
+    handleClickEdit() {
+      this.childObj.message = '子组件修改了数据';
+    }
+  }
+})
+
+let vm = new Vue({
+  el: '#app',
+
+  data: {
+    obj: {}
+  },
+
+  methods: {
+    handleTestEvent(value) {
+      this.obj = value;
+    },
+
+    handleClickEdit() {
+      this.obj.message = '父组件修改了数据';
+    }
+  }
+});
+</script>
+</html>
