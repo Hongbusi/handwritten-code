@@ -10,22 +10,16 @@
 
 </body>
 <script>
-  // https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLAnchorElement
-
-  let dom;
+  // https://developer.mozilla.org/zh-CN/docs/Web/API/URL
 
   function getQueryString(url, name = '') {
     if (!url) {
       return undefined;
     }
 
-    if (!dom) {
-      dom = document.createElement('a');
-    }
+    const newUrl = new URL(url);
+    const search = newUrl.search.substring(1);
 
-    dom.href = url;
-
-    const search = dom.search.substring(1);
     const splitArr = search.split('&');
     const result = {};
 
