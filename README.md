@@ -2,7 +2,7 @@
 
 ## 手写代码专题
 
-- 手写 getQueryString - `doing`
+- 手写 getQueryString - `done`
 
 - 手写 setInterval  - `doing`
 
