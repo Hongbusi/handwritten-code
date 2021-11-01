@@ -9,4 +9,41 @@
 <body>
 
 </body>
+<script>
+  function setInterval(callback, interval) {
+    console.log('init');
+    const now = Date.now;
+    let startTime = now();
+    let endTime = startTime;
+    const self = this;
+    let timer = 0;
+    const loop = function() {
+      console.log(requestAnimationFrame(() => { console.log(1);}))
+      timer = requestAnimationFrame(loop);
+      endTime = now();
+      if (endTime - startTime >= interval) {
+        startTime = endTime = now();
+        callback && callback();
+      }
+      return timer;
+    }
+    loop();
+    return timer;
+  };
+
+  function clearInterval(timer) {
+    console.log('calerfin')
+    cancelAnimationFrame(timer);
+  }
+
+  let count = 0;
+  const timer = setInterval(() => {
+    console.log('setInterval');
+    count++;
+    console.log(timer);
+    if (count >= 5) {
+      clearInterval(timer)
+    }
+  }, 1000);
+</script>
 </html>
