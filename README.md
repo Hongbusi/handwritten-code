@@ -4,7 +4,7 @@
 
 - 手写 getQueryString - `done`
 
-- 手写 setInterval  - `doing`
+- 手写 setInterval  - `done`
 
 - 手写函数节流 debounce  - `doing`
 
