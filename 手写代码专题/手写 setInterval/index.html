@@ -10,39 +10,36 @@
 
 </body>
 <script>
-  function setInterval(callback, interval) {
-    console.log('init');
-    const now = Date.now;
-    let startTime = now();
-    let endTime = startTime;
-    const self = this;
-    let timer = 0;
-    const loop = function() {
-      console.log(requestAnimationFrame(() => { console.log(1);}))
-      timer = requestAnimationFrame(loop);
-      endTime = now();
-      if (endTime - startTime >= interval) {
-        startTime = endTime = now();
-        callback && callback();
-      }
-      return timer;
-    }
-    loop();
-    return timer;
-  };
+  const obj = {
+    timer: null,
 
-  function clearInterval(timer) {
-    console.log('calerfin')
-    cancelAnimationFrame(timer);
+    setInterval: function(callback, interval) {
+      const now = Date.now;
+      let startTime = now();
+      let endTime = startTime;
+      const loop = () => {
+        this.timer = requestAnimationFrame(loop);
+        endTime = now();
+        if (endTime - startTime >= interval) {
+          startTime = endTime = now();
+          callback && callback();
+        }
+        return this.timer;
+      }
+      loop();
+    },
+
+    clearInterval: function() {
+      cancelAnimationFrame(this.timer);
+    }
   }
 
   let count = 0;
-  const timer = setInterval(() => {
-    console.log('setInterval');
+  obj.setInterval(() => {
+    console.log('setInterval...');
     count++;
-    console.log(timer);
     if (count >= 5) {
-      clearInterval(timer)
+      obj.clearInterval();
     }
   }, 1000);
 </script>
