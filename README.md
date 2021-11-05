@@ -6,9 +6,9 @@
 
 - 手写 setInterval  - `done`
 
-- 手写函数节流 debounce  - `doing`
+- 手写函数节流 throttle  - `doing`
 
-- 手写函数防抖 throttle  - `doing`
+- 手写函数节流 debounce  - `doing`
 
 - 手写原生 Ajax 请求  - `doing`
 
