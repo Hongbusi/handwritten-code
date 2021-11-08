@@ -6,9 +6,9 @@
 
 - 手写 setInterval `(完结)`
 
-- 手写函数节流 throttle `(进行中)`
+- 手写函数节流 throttle `(完结)`
 
-- 手写函数节流 debounce `(进行中)`
+- 手写函数节流 debounce `(完结)`
 
 - 手写原生 Ajax 请求 `(进行中)`
 
