@@ -4,7 +4,7 @@
 
 - 手写 getQueryString `(完结)`
 
-- 手写 setInterval  - `done`
+- 手写 setInterval `完结`
 
 - 手写函数节流 throttle  - `doing`
 
