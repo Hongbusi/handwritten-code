@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{ title }}</h2>
+    <input type="text" v-model="title" @keydown.enter="addTodo">
+    <button v-if="active < all" @click="clear">清理</button>
+    <ul v-if="todos.length">
+      <li v-for="todo in todos">
+        <input type="checkbox" v-model="todo.done">
+        <span :class="{ done: todo.done }">{{ todo.title }}</span>
+      </li>
+    </ul>
+    <div v-else>暂无数据</div>
+    <div>
+      全选<input type="checkbox" v-model="allDone">
+      <span>{{ active }} / {{ all }}</span>
+    </div>
+  </div>
+</body>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const App = {
+    data() {
+      return {
+        title: '',
+        todos: []
+      }
+    },
+
+    computed: {
+      all() {
+        return this.todos.length;
+      },
+
+      active() {
+        return this.todos.filter(v => !v.done).length;
+      },
+
+      allDone: {
+        get: function() {
+          return this.active === 0;
+        },
+
+        set: function(val) {
+          this.todos.forEach(todo => {
+            todo.done = val;
+          });
+        }
+      }
+    },
+
+    created() {
+      window.addEventListener('beforeunload', this.saveTodos);
+    },
+
+    mounted() {
+      let todos = localStorage.getItem('todos');
+      if (todos) {
+        this.todos = JSON.parse(todos);
+      }
+    },
+
+    unmounted() {
+      window.removeEventListener('beforeunload', this.saveTodos)
+    },
+
+    methods: {
+      addTodo() {
+        this.todos.push({
+          title: this.title,
+          done: false
+        });
+        this.title = '';
+      },
+
+      clear() {
+        this.todos = this.todos.filter(todo => !todo.done);
+      },
+
+      saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+      }
+    }
+  }
+
+  Vue.createApp(App).mount('#app');
+</script>
+</html>
+
+<style>
+  .done {
+    color: gray;
+    text-decoration: line-through;
+  }
+</style>
