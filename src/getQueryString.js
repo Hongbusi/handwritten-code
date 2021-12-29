@@ -1,4 +1,7 @@
-// 方法 1：https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLAnchorElement
+/**
+ * 方法 1
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLAnchorElement
+ */
 
 let dom;
 
@@ -32,7 +35,10 @@ function getQueryString1(url, name = '') {
   return name ? result[name] : result;
 }
 
-// 方法 2：https://developer.mozilla.org/zh-CN/docs/Web/API/URL
+/**
+ * 方法 2
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/URL
+ */
 
 function getQueryString2(url, name = '') {
   if (!url) {
