@@ -49,3 +49,4 @@
 - [x] [手写函数节流 debounce](./methods/debounce.js)
 - [x] [自动柯里化函数](./methods/currying.js)
 - [x] [isHTMLTag（柯里化）](./methods/isHTMLTag.js)
+- [x] [组合函数](./methods/compose.js)
