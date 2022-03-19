@@ -3,7 +3,7 @@ Function.prototype._call = function(thisArg, ...args) {
   const fn = this
 
   // 2. 处理绑定的 thisArg
-  thisArg = thisArg ? Object(thisArg) : window
+  thisArg = (thisArg !== null && thisArg !== undefined) ? Object(thisArg) : window
 
   // 3. 执行函数
   thisArg.fn = fn
