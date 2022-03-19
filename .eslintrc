@@ -2,6 +2,7 @@
   "extends": "@hongbusi/eslint-config-basic",
   "rules": {
     "no-console": "off",
-    "no-extend-native": "off"
+    "no-extend-native": "off",
+    "prefer-rest-params": "off"
   }
 }
