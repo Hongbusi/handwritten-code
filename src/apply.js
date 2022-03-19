@@ -1,4 +1,4 @@
-Function.prototype._call = function(thisArg, ...args) {
+Function.prototype._apply = function(thisArg, argArray) {
   // 1. 获取要执行的函数
   const fn = this
 
@@ -7,7 +7,8 @@ Function.prototype._call = function(thisArg, ...args) {
 
   // 3. 执行函数
   thisArg.fn = fn
-  const result = thisArg.fn(...args)
+  argArray = argArray || []
+  const result = thisArg.fn(...argArray)
   delete thisArg.fn
 
   // 4. 返回结果
@@ -19,9 +20,10 @@ function foo() {
 }
 
 function sum(num1, num2) {
-  console.log('sum', this, num1, num2)
+  console.log('sum', this)
   return num1 + num2
 }
-foo._call(null)
-foo._call({ name: 'hbs' })
-console.log(sum._call(null, 20, 40))
+
+foo._apply(null)
+foo._apply({})
+console.log(sum._apply({}, [10, 20]))

@@ -19,7 +19,7 @@
 - [ ] 数组 pop 方法
 - [ ] Vue nextTick
 - [x] [call](./src/call.js)
-- [ ] apply
+- [x] [apply](./src/apply.js)
 - [ ] bind
 - [ ] 事件委托
 - [ ] 对象属性值迭代器
