@@ -18,7 +18,6 @@
 - [ ] 对象属性值迭代器
 - [ ] 一个迭代器 Iterator
 - [ ] 函数 AOP
-- [ ] 柯里化
 - [ ] 分时函数
 - [ ] JSONP
 - [ ] Promise
@@ -48,3 +47,5 @@
 - [x] [getQueryString](./methods/getQueryString.js)
 - [x] [函数节流 throttle](./methods/throttle.js)
 - [x] [手写函数节流 debounce](./methods/debounce.js)
+- [x] [自动柯里化函数](./methods/currying.js)
+
