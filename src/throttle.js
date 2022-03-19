@@ -4,29 +4,30 @@
  */
 
 function throttle(fn, interval = 500) {
-  let timer = null;
-  let firstTime = true;
+  let timer = null
+  let firstTime = true
   return function() {
-    const args = [...arguments];
-    const self = this;
+    // eslint-disable-next-line prefer-rest-params
+    const args = [...arguments]
+    const self = this
     if (firstTime) {
-      fn.apply(self, args);
-      firstTime = false;
-      return false;
+      fn.apply(self, args)
+      firstTime = false
+      return false
     }
 
     if (timer) {
-      return false;
+      return false
     }
 
     timer = setTimeout(() => {
-      clearTimeout(timer);
-      timer = null;
-      fn.apply(self, args);
-    }, interval);
+      clearTimeout(timer)
+      timer = null
+      fn.apply(self, args)
+    }, interval)
   }
 }
 
 window.onresize = throttle(() => {
-  console.log('window resize throttle');
-}, 800);
+  console.log('window resize throttle')
+}, 800)
