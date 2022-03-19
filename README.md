@@ -20,7 +20,7 @@
 - [ ] Vue nextTick
 - [x] [call](./src/call.js)
 - [x] [apply](./src/apply.js)
-- [ ] bind
+- [x] [bind](./src/bind.js)
 - [ ] 事件委托
 - [ ] 对象属性值迭代器
 - [ ] 一个迭代器 Iterator
