@@ -18,7 +18,7 @@
 - [ ] 数组 push 方法
 - [ ] 数组 pop 方法
 - [ ] Vue nextTick
-- [ ] call
+- [x] [call](./src/call.js)
 - [ ] apply
 - [ ] bind
 - [ ] 事件委托
