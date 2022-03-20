@@ -37,10 +37,13 @@
 - [x] [at](./array/at.js)
 - [x] [concat](./array/concat.js)
 - [x] [every](./array/every.js)
-- [x] [call](./array/call.js)
-- [x] [apply](./array/apply.js)
-- [x] [bind](./array/bind.js)
 - [x] [slice](./array/slice.js)
+
+## Function
+
+- [x] [call](./function/call.js)
+- [x] [apply](./function/apply.js)
+- [x] [bind](./function/bind.js)
 
 ## Methods
 
