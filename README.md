@@ -28,6 +28,10 @@
 - [ ] 洗牌方法 shuffle
 - [ ] 基于发布 / 订阅模式实现事件系统
 
+## Global Objects
+
+- [x] [Promise](./global-objects/Promise.js)
+
 ## Web Api
 
 - [x] [setInterval](./web-api/setInterval.js)
