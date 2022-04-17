@@ -3,7 +3,6 @@
 - [ ] 原生 Ajax 请求
 - [ ] Object.create
 - [ ] 图片懒加载
-- [ ] instanceof
 - [ ] 获取随机数方法 getRandom
 - [ ] 数组 reduce
 - [ ] 模拟 new 关键词方法
@@ -30,6 +29,10 @@
 ## Global Objects
 
 - [x] [Promise](./global-objects/Promise.js)
+
+## Operators
+
+- [x] [instanceof](./operators/instanceof.js)
 
 ## Web Api
 
