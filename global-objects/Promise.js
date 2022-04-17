@@ -107,12 +107,68 @@ class HbsPromise {
   static reject(reason) {
     return new HbsPromise((resolve, reject) => reject(reason))
   }
+
+  static all(promises) {
+    return new HbsPromise((resolve, reject) => {
+      const values = []
+      promises.forEach((promise, index) => {
+        promise.then((res) => {
+          values[index] = res
+          if (values.length === promises.length) {
+            resolve(values)
+          }
+        }, (err) => {
+          reject(err)
+        })
+      })
+    })
+  }
+
+  static allSettled(promises) {
+    return new HbsPromise((resolve) => {
+      const values = []
+      promises.forEach((promise, index) => {
+        promise.then((res) => {
+          values[index] = {
+            status: PROMISE_STATUS_FULFILLED,
+            value: res
+          }
+
+          if (values.length === promises.length) {
+            resolve(values)
+          }
+        }, (err) => {
+          values[index] = {
+            status: PROMISE_STATUS_REJECTED,
+            reason: err
+          }
+          if (values.length === promises.length) {
+            resolve(values)
+          }
+        })
+      })
+    })
+  }
 }
 
-HbsPromise.resolve('Hello World').then((res) => {
-  console.log(res)
+const p1 = new HbsPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('p1')
+  }, 2000)
 })
 
-HbsPromise.reject('error message').catch((err) => {
-  console.log(err)
+const p2 = new HbsPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject('p2')
+  }, 1000)
+})
+
+const p3 = new HbsPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('p3')
+  }, 3000)
+})
+
+HbsPromise.allSettled([p1, p2, p3]).then((res) => {
+  console.log(res)
 })
