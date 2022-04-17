@@ -60,6 +60,9 @@ class HbsPromise {
   }
 
   then(onFulfilled, onRejected) {
+    const defaultOnRejected = (err) => { throw err }
+    onRejected = onRejected || defaultOnRejected
+
     return new HbsPromise((resolve, reject) => {
       // 1. 如果在 then 调用的时候，状态已经确定下来
       if (this.status === PROMISE_STATUS_FULFILLED && onFulfilled) {
@@ -72,32 +75,33 @@ class HbsPromise {
 
       // 2. 将成功回调和失败回调放到数组中
       if (this.status === PROMISE_STATUS_PENDING) {
-        this.onFulfilledFns.push(() => {
-          execFunctionWithCatchError(onFulfilled, this.value, resolve, reject)
-        })
-        this.onRejectedFns.push(() => {
-          execFunctionWithCatchError(onRejected, this.reason, resolve, reject)
-        })
+        if (onFulfilled) {
+          this.onFulfilledFns.push(() => {
+            execFunctionWithCatchError(onFulfilled, this.value, resolve, reject)
+          })
+        }
+        if (onRejected) {
+          this.onRejectedFns.push(() => {
+            execFunctionWithCatchError(onRejected, this.reason, resolve, reject)
+          })
+        }
       }
     })
+  }
+
+  catch(onRejected) {
+    this.then(undefined, onRejected)
   }
 }
 
 const promise = new HbsPromise((resolve, reject) => {
-  resolve('resolve')
-  // reject('reject')
+  // resolve('resolve')
+  reject('reject')
   // throw new Error('err message')
 })
 
 promise.then((res) => {
-  console.log('res1: ', res)
-  // return '111'
-  throw new Error('err message')
-}, (err) => {
-  console.log('err1: ', err)
-  throw new Error('err message')
-}).then((res) => {
-  console.log('res2: ', res)
-}, (err) => {
-  console.log('err2: ', err)
+  console.log('res', res)
+}).catch((err) => {
+  console.log('err', err)
 })
