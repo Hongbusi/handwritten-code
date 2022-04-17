@@ -149,11 +149,33 @@ class HbsPromise {
       })
     })
   }
+
+  static race(promises) {
+    return new HbsPromise((resolve, reject) => {
+      promises.forEach((promise) => {
+        promise.then(resolve, reject)
+      })
+    })
+  }
+
+  static any(promises) {
+    return new HbsPromise((resolve, reject) => {
+      const reasons = []
+      promises.forEach((promise, index) => {
+        promise.then(resolve, (err) => {
+          reasons[index] = err
+          if (reasons.length === promises.length) {
+            reject(new AggregateError(reasons))
+          }
+        })
+      })
+    })
+  }
 }
 
 const p1 = new HbsPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve('p1')
+    reject('p1')
   }, 2000)
 })
 
@@ -165,10 +187,12 @@ const p2 = new HbsPromise((resolve, reject) => {
 
 const p3 = new HbsPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve('p3')
+    reject('p3')
   }, 3000)
 })
 
-HbsPromise.allSettled([p1, p2, p3]).then((res) => {
+HbsPromise.any([p1, p2, p3]).then((res) => {
   console.log(res)
+}, (err) => {
+  console.log(err)
 })
