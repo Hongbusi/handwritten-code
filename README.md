@@ -20,7 +20,6 @@
 - [ ] 函数 AOP
 - [ ] 分时函数
 - [ ] JSONP
-- [ ] Promise
 - [ ] JavaScript 各种继承方式
 - [ ] ES6 extends
 - [ ] 对象属性扩展 extend 方法
