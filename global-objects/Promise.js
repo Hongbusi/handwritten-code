@@ -99,18 +99,20 @@ class HbsPromise {
       onFinally()
     })
   }
+
+  static resolve(value) {
+    return new HbsPromise(resolve => resolve(value))
+  }
+
+  static reject(reason) {
+    return new HbsPromise((resolve, reject) => reject(reason))
+  }
 }
 
-const promise = new HbsPromise((resolve, reject) => {
-  resolve('resolve')
-  // reject('reject')
-  // throw new Error('err message')
+HbsPromise.resolve('Hello World').then((res) => {
+  console.log(res)
 })
 
-promise.then((res) => {
-  console.log('res', res)
-}).catch((err) => {
-  console.log('err', err)
-}).finally(() => {
-  console.log('finally')
+HbsPromise.reject('error message').catch((err) => {
+  console.log(err)
 })
