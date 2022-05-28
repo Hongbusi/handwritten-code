@@ -59,3 +59,4 @@
 - [x] [自动柯里化函数](./methods/currying.js)
 - [x] [isHTMLTag（柯里化）](./methods/isHTMLTag.js)
 - [x] [组合函数](./methods/compose.js)
+- [x] [给出一个请求数组，一次只响应两次请求](./methods/fetchLimited.js)
